@@ -9,8 +9,22 @@
   <div id="rouletteBoard" class="roulette-board">
     <!-- ルーレットの数字や色を表示するための要素 -->
   </div>
-<button onclick="spinRoulette()">スピン</button>
+  <button onclick="spinRoulette()">スピン</button>
   
-  <script src="https://garashi-i.github.io/Roulette/script.js"></script>
+  <script>
+    // ルーレットの数字と色の配列を定義
+    const rouletteNumbers = [
+      // 数字と色のオブジェクトが定義された配列
+    ];
+
+    function spinRoulette() {
+      // ルーレットをスピンしてランダムな数字と色を選択
+      const result = rouletteNumbers[Math.floor(Math.random() * rouletteNumbers.length)];
+
+      const rouletteBoard = document.getElementById('rouletteBoard');
+      rouletteBoard.style.backgroundColor = result.color;
+      rouletteBoard.innerText = result.number;
+    }
+  </script>
 </body>
 </html>
