@@ -1,6 +1,6 @@
 // ルーレットの数字と色の配列を定義
 const rouletteNumbers = [
-  { number: "0", color: "green" },
+   { number: "0", color: "green" },
   { number: "1", color: "red" },
   { number: "2", color: "black" },
   { number: "3", color: "red" },
@@ -39,9 +39,15 @@ const rouletteNumbers = [
   { number: "36", color: "red" }
 ];
 
+
 function spinRoulette() {
   // ルーレットをスピンしてランダムな数字と色を選択
   const result = rouletteNumbers[Math.floor(Math.random() * rouletteNumbers.length)];
+
+  const rouletteBoard = document.getElementById('rouletteBoard');
+  rouletteBoard.style.backgroundColor = result.color;
+  rouletteBoard.innerText = result.number;
+}
 
   const rouletteBoard = document.getElementById('rouletteBoard');
   rouletteBoard.style.backgroundColor = result.color;
