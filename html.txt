@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ルーレットゲーム</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>ルーレットゲーム</h1>
+  <div id="rouletteBoard">
+    <!-- ルーレットの数字や色を表示するための要素 -->
+  </div>
+  <button onclick="spinRoulette()">スピン</button>
+  
+  <script src="script.js"></script>
+</body>
+</html>
