@@ -1,0 +1,30 @@
+/* ゲームのスタイルを設定 */
+/* 必要に応じてデザインをカスタマイズしてください */
+.game {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.player,
+.dealer {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.player-cards,
+.dealer-cards {
+  border: 1px solid #000;
+  padding: 10px;
+  margin-bottom: 10px;
+  min-height: 120px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  font-size: 16px;
+}
