@@ -1,35 +1,3 @@
-// ゲームに関する変数や関数を定義
-// カードデッキの作成、カードの値の計算、ゲームの進行などを行う
-
-// デッキの作成
-const deck = [
-  // カード情報を配列に格納（例： { suit: 'ハート', value: 'A' }）
-  // 52枚のカードを作成（スートごとに13枚ずつ）
-];
-
-// ゲームの初期化（ディール、スコア計算など）
-
-// Dealボタンのクリック処理
-document.getElementById('deal-button').addEventListener('click', () => {
-  // ゲームの開始処理
-});
-
-// Hitボタンのクリック処理
-document.getElementById('hit-button').addEventListener('click', () => {
-  // プレイヤーがカードを追加する処理
-});
-
-// Standボタンのクリック処理
-document.getElementById('stand-button').addEventListener('click', () => {
-  // ディーラーの手番（カードを引く処理）と勝敗判定
-});
-// グローバル変数
-const suits = ['ハート', 'ダイヤ', 'スペード', 'クローバー'];
-const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-
-let deck = [];
-let playerCards = [];
-let dealerCards = [];
 
 // ゲームの初期化
 function startGame() {
@@ -78,9 +46,13 @@ function updateScores() {
   const playerScore = calculateScore(playerCards);
   const dealerScore = calculateScore(dealerCards);
 
-  // スコアを表示する処理を記述
+  const playerScoreElement = document.querySelector('.player-score');
+  const dealerScoreElement = document.querySelector('.dealer-score');
 
-  // 勝敗を判定する処理を記述
+  playerScoreElement.textContent = playerScore;
+  dealerScoreElement.textContent = dealerScore;
+
+  determineWinner(playerScore, dealerScore);
 }
 
 // カードの値を計算する
@@ -131,18 +103,37 @@ function dealerTurn() {
 }
 
 // 勝敗を判定する
-function determineWinner() {
-  const playerScore = calculateScore(playerCards);
-  const dealerScore = calculateScore(dealerCards);
-
+function determineWinner(playerScore, dealerScore) {
   // 勝敗を表示する処理を記述
+  const result = document.createElement('h2');
+  const gameContainer = document.querySelector('.game');
+  if (playerScore > 21) {
+    result.textContent = 'プレイヤーがバーストしました。ディーラーの勝利です。';
+  } else if (dealerScore > 21) {
+    result.textContent = 'ディーラーがバーストしました。プレイヤーの勝利です。';
+  } else if (playerScore === dealerScore) {
+    result.textContent = '引き分けです。';
+  } else if (playerScore > dealerScore) {
+    result.textContent = 'プレイヤーの勝利です。';
+  } else {
+    result.textContent = 'ディーラーの勝利です。';
+  }
+  gameContainer.appendChild(result);
 }
 
 // プレイヤーがスタンドする
 function stand() {
   dealerTurn();
-  determineWinner();
 }
+
+// Dealボタンのクリック処理
+document.getElementById('deal-button').addEventListener('click', startGame);
+
+// Hitボタンのクリック処理
+document.getElementById('hit-button').addEventListener('click', hit);
+
+// Standボタンのクリック処理
+document.getElementById('stand-button').addEventListener('click', stand);
 
 // ゲームを開始するための初期化
 startGame();
