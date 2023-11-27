@@ -1,30 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>ルーレットゲーム</title>
-  <link rel="stylesheet" href="https://garashi-i.github.io/Roulette/styles.css" />
+  <meta charset="UTF-8">
+  <title>ブラックジャック</title>
+  <style>
+    /* CSS: ここにスタイリングを追加 */
+    /* カードの表示や配置、ボタンのスタイルなど */
+  </style>
 </head>
 <body>
-  <h1>ルーレットゲーム</h1>
-  <div id="rouletteBoard" class="roulette-board">
-    <!-- ルーレットの数字や色を表示するための要素 -->
+  <div class="game">
+    <div class="player">
+      <h2>プレイヤー</h2>
+      <div class="player-cards"></div>
+      <h3>スコア: <span class="player-score">0</span></h3>
+    </div>
+    <div class="dealer">
+      <h2>ディーラー</h2>
+      <div class="dealer-cards"></div>
+      <h3>スコア: <span class="dealer-score">0</span></h3>
+    </div>
+    <div class="buttons">
+      <button id="deal-button">Deal</button>
+      <button id="hit-button">Hit</button>
+      <button id="stand-button">Stand</button>
+    </div>
   </div>
-  <button onclick="spinRoulette()">スピン</button>
-  
+
   <script>
-    // ルーレットの数字と色の配列を定義
-    const rouletteNumbers = [
-      // 数字と色のオブジェクトが定義された配列
-    ];
+    // JavaScript: ゲームのロジックを記述
 
-    function spinRoulette() {
-      // ルーレットをスピンしてランダムな数字と色を選択
-      const result = rouletteNumbers[Math.floor(Math.random() * rouletteNumbers.length)];
+    // グローバル変数
+    const suits = ['ハート', 'ダイヤ', 'スペード', 'クローバー'];
+    const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
-      const rouletteBoard = document.getElementById('rouletteBoard');
-      rouletteBoard.style.backgroundColor = result.color;
-      rouletteBoard.innerText = result.number;
+    let deck = [];
+    let playerCards = [];
+    let dealerCards = [];
+
+    // ゲームの初期化
+    function startGame() {
+      deck = createDeck();
+      shuffleDeck(deck);
+      playerCards = [];
+      dealerCards = [];
+      dealCards();
     }
+
+    // ... (以前のコードと同じ)
+
+    // カードを表示する
+    function showCards(element, cards) {
+      const cardsHTML = cards.map(card => `${card.value} ${card.suit}`).join('<br>');
+      element.innerHTML = cardsHTML;
+    }
+
+    // スコアを表示する
+    function showScore(element, score) {
+      element.textContent = score;
+    }
+
+    // Dealボタンのクリックイベント
+    document.getElementById('deal-button').addEventListener('click', startGame);
+
+    // Hitボタンのクリックイベント
+    document.getElementById('hit-button').addEventListener('click', hit);
+
+    // Standボタンのクリックイベント
+    document.getElementById('stand-button').addEventListener('click', stand);
+
+    // ゲームを開始するための初期化
+    startGame();
   </script>
 </body>
 </html>
